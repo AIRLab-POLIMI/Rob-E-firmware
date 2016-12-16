@@ -1,0 +1,39 @@
+{
+  "name": "IRNodeConfiguration", 
+  "description": "IR node configuration", 
+  "namespace": "@", 
+  "fields": [ 
+    {
+      "name": "topic", 
+      "description": "Name of the topic", 
+      "type": "CHAR", 
+      "size": 16 
+    },
+    {
+     "name": "frequency",
+     "description": "Frequency of the publisher",
+     "type": "FLOAT32",
+     "size": 1
+    },
+    {
+     "name": "dist",
+     "description": "List of characteristic distance points",
+     "type": "FLOAT32",
+     "size": 20
+    },
+    {
+     "name": "volt",
+     "description": "List of characteristic voltage outputs",
+     "type": "FLOAT32",
+     "size": 20
+    },
+    {
+     "name": "values",
+     "description": "Number of characteristic values",
+     "type": "UINT32",
+     "size": 1
+    }
+    
+  ]
+}  
+ 
