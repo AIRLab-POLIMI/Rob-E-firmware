@@ -15,7 +15,7 @@
 //ROS msgs
 #include <geometry_msgs/Twist.h>
 #include <std_msgs/ColorRGBA.h>
-#include <triskar_msgs/IR.h>
+#include <triskar_msgs/Proximity.h>
 
 #define USE_USB_SERIAL 1
 #include "ch.h"
@@ -83,7 +83,7 @@ private:
 
 	//ROS
 	geometry_msgs::Twist ros_twist_msg;
-	triskar_msgs::IR ros_proximity_msg;
+	triskar_msgs::Proximity ros_proximity_msg;
 	geometry_msgs::Vector3 ros_enc_msg; //TODO change
 
 	ros::Publisher twist_pub;
