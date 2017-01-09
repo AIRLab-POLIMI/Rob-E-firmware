@@ -1,6 +1,0 @@
-{
-  "name": "pixy_driver",
-  "description": "Package for managing a pixy sensor", 
-  "provider": "core", 
-  "sources": [ "PixyNode.cpp" ]
-}  
