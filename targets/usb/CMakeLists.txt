@@ -23,8 +23,6 @@ core_target_module(
   MODULE usb
   OS_VERSION CHIBIOS_3
   PACKAGES
-    pixy_driver
-    pixy_msgs
     triskar_kinematics
     triskar_msgs
     actuator_msgs
