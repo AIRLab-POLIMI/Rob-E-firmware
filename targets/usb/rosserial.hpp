@@ -38,7 +38,7 @@ public:
 				   void* node);
 
 	static bool
-	irCallback(const core::sensor_msgs::Proximity& msg,
+	proximityCallback(const core::sensor_msgs::Proximity& msg,
 					   void* node);
 
 	static bool
@@ -87,7 +87,7 @@ private:
 	geometry_msgs::Vector3 ros_enc_msg; //TODO change
 
 	ros::Publisher twist_pub;
-	ros::Publisher ir_pub;
+	ros::Publisher proximity_pub;
 	ros::Publisher enc_pub;
 	ros::Subscriber<geometry_msgs::Twist> setpoint_sub;
 

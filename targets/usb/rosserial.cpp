@@ -5,7 +5,7 @@ ros::NodeHandle nh;
 const char* setpointName = "cmd_vel";
 const char* twist_name = "vel";
 const char* enc_name = "enc";
-const char* ir_name = "proximity";
+const char* proximity_name = "proximity";
 
 const float encoderFrequency = 100;
 
@@ -17,7 +17,7 @@ RosSerialPublisher::RosSerialPublisher(const char* name,
 		core::os::Thread::Priority priority) :
 		CoreNode::CoreNode(name, priority),
 		twist_pub(twist_name, &ros_twist_msg),
-		ir_pub(ir_name, &ros_proximity_msg),
+		proximity_pub(proximity_name, &ros_proximity_msg),
 		enc_pub(enc_name, &ros_enc_msg),
 		setpoint_sub(setpointName, RosSerialPublisher::setpointCallback)
 {
@@ -35,8 +35,8 @@ bool RosSerialPublisher::onPrepareMW() {
 	_subscriberTwist.set_callback(twistCallback);
 	subscribe(_subscriberTwist, twist_name);
 
-	_subscriberProximity.set_callback(irCallback);
-	subscribe(_subscriberProximity, ir_name);
+	_subscriberProximity.set_callback(proximityCallback);
+	subscribe(_subscriberProximity, proximity_name);
 
 	_subscriberEncoder[0].set_callback(encoderCallback_0);
 	subscribe(_subscriberEncoder[0], "encoder_0");
@@ -72,7 +72,7 @@ bool RosSerialPublisher::twistCallback(const core::triskar_msgs::Velocity& msg,
 }
 
 
-bool RosSerialPublisher::irCallback(const core::sensor_msgs::Proximity& msg,
+bool RosSerialPublisher::proximityCallback(const core::sensor_msgs::Proximity& msg,
 				   void* node)
 {
 	RosSerialPublisher* tmp = static_cast<RosSerialPublisher*>(node);
@@ -148,7 +148,7 @@ bool RosSerialPublisher::onStart()
 {
 	nh.initNode();
 	nh.advertise(twist_pub);
-	nh.advertise(ir_pub);
+	nh.advertise(proximity_pub);
 	nh.advertise(enc_pub);
 
 	nh.subscribe(setpoint_sub);
@@ -176,7 +176,7 @@ bool RosSerialPublisher::onLoop() {
 
 		if(proximity)
 		{
-			ir_pub.publish(&ros_proximity_msg);
+			proximity_pub.publish(&ros_proximity_msg);
 			proximity = false;
 		}
 
